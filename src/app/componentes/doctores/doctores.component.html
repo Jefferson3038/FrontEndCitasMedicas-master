@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row text-center mt-4">
+      <div class="col">
+      </div>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="col">
+        <h2>{{titulo}}</h2>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Doctores'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-success botones" type="button" (click)="vistaAgregar()">Agregar</button>
+        <button class="btn btn-primary botones" type="button" (click)="onDataTableEliminados()">Ver desactivados</button>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Doctores desactivados'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-primary" type="button" (click)="onDataTable()">Volver</button>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <table id="dtDocot" class="table" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Especialidad</th>
+              <th>Horario</th>
+              <th style="width: 0px;"></th>
+              <th style="width: 0px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doc of datatable" [ngSwitch]="doc.docEstatus">
+              <td [ngStyle]="{color: doc.docEstatus=='D' ? 'red': 'black'}">{{doc.docCodigo}}</td>
+              <td>{{doc.docNombre}}</td>
+              <td>{{doc.docApellido}}</td>
+              <td>{{doc.docTelefono}}</td>
+              <td>{{doc.docEmail}}</td>
+              <td>{{doc.docEspecialidades}}
+              <td>{{doc.docHorarioInicial}} - {{doc.docHorarioFinal}}</td>   
+              <td *ngSwitchCase="'A'"><button class="btn btn-warning" type="button" (click)="onSetData(doc)">Detalles</button></td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-danger" type="button"  (click)="onDeleteDoctor(doc)">Desactivar</button></td>
+              <td *ngSwitchCase="'D'"><button class="btn btn-success" type="button"  (click)="onRestaurar(doc)">Activar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

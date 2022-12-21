@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row text-center mt-4">
+      <div class="col">
+      </div>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="col">
+        <h2>{{titulo}}</h2>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Usuarios'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-primary" type="button" (click)="onDataTableEliminados()">Ver desactivados</button>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Usuarios desactivados'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-primary" type="button" (click)="onDataTable()">Volver</button>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <table id="dtDocot" class="table" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre del usuario</th>
+              <th style="width: 18rem;">Rol</th>
+              <th style="width: 0px;"></th>
+              <th style="width: 0px;"></th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let user of datatable" [ngSwitch]="user.userEstatus">
+              <td [ngStyle]="{color: user.userEstatus=='D' ? 'red': 'black'}">{{user.userCodigo}}</td>
+              <td>{{user.userNombre}}</td>
+              <td *ngIf="user.rlCodigo==1">Doctor</td>
+              <td *ngIf="user.rlCodigo==2">Paciente</td>
+              <td *ngIf="user.rlCodigo==3">Administrador</td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-warning" type="button" (click)="onSetData(user)">Detalles</button></td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-danger" type="button" (click)="onDelete(user)">Desactivar</button></td>
+              <td *ngSwitchCase="'D'"><button class="btn btn-success" type="button" (click)="onRestaurar(user)">Activar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,16 @@
+<h3>Detalles del usuario {{usuario.UserNombre}}</h3>
+<img class="perfil" src="../../../assets/doctor-png.png">
+<div>
+    <label for="txtNombre" class="from-label">Usuario</label>
+    <input type="text" disabled="true" name="id" id="txtNombre" class="form-control" [(ngModel)]="usuario.UserNombre">
+  </div>
+  <div style="width:17.5rem;">
+    <label for="txtFecha" class="from-label">Fecha de creación</label>
+    <input style="margin:0%;" type="text" name="id" id="txtFecha" class="form-control" disabled="true" [(ngModel)]="usuario.UserFechaCreacion">
+  </div>
+  <button class="btn btn-success" type="button"  (click)="onUpdate(usuario)">Actualizar</button>
+  <button style="color:white;" class="btn btn-warning" type="button" (click)="onDelete(usuario)">Desactivar</button>
+  <button class="btn btn-danger" type="button" (click)="cerrarDialog()">Cancelar</button>
+<h5 class="tipo" *ngIf="usuario.RlCodigo==1">Doctor</h5>
+<h5 class="tipo" *ngIf="usuario.RlCodigo==2">Paciente</h5>
+<h5 class="tipo" *ngIf="usuario.RlCodigo==3">Administrador</h5>

@@ -1,0 +1,120 @@
+<div class="navegador" *ngIf="data != null">
+    <div *ngIf="data == 3">
+       <nav>
+         <a class="logo" routerLink="">
+            <img style="height: 1.8rem;"src="../../../assets/logo.svg" alt="logo">
+         </a>
+         <ul class="menu-doctor">
+            <li><a class="botonesMenu" routerLink="">Home</a></li>
+            <li>
+                <a class="botonesMenu" routerLink="/Doctores">Doctores</a>
+                <ul>
+                    <li><a routerLink="/Doctores">Lista</a></li>
+                    <li><a routerLink="/Agregar-doctor">Agregar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="botonesMenu" routerLink="/Pacientes">Pacientes</a>
+                <ul>
+                    <li><a routerLink="/Pacientes">Lista</a></li>
+                    <li><a routerLink="/Agregar-paciente">Agregar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="botonesMenu" routerLink="/Usuarios">Usuarios</a>
+                <ul>
+                    <li><a routerLink="/Usuarios">Lista</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="botonesMenu" routerLink="/Citas">Citas</a>
+                <ul>
+                    <li><a routerLink="/Citas">Lista</a></li>
+                    <li><a routerLink="/Agregar-cita">Agregar</a></li>
+                </ul>
+            </li>
+            <li >
+                <a type="button" style="background-color: #0B5ED7; font-weight: bold;" class="botonesMenu" (click)="logout()">Logout</a>
+            </li>
+         </ul>
+       </nav>
+       <div class="info">
+       <div class="account">admin</div>
+        <div>
+            <a class="logo" routerLink="/Perfil">
+                <img style="height: 2rem; margin-right: 1rem;" src="../../../assets/user.svg" alt="logo">
+            </a>
+        </div>
+       </div>
+    </div>
+    <div *ngIf="data == 2">
+        <nav>
+          <a class="logo" routerLink="">
+             <img style="height: 1.8rem;"src="../../../assets/logo.svg" alt="logo">
+          </a>
+          <ul class="menu-doctor">
+             <li><a class="botonesMenu" routerLink="">Home</a></li>
+             <li>
+                 <a class="botonesMenu" routerLink="/Vista-Doctores">Doctores</a>
+                 <ul>
+                     <li><a routerLink="/Vista-Doctores">Lista</a></li>
+                 </ul>
+             </li>
+             <li>
+                 <a class="botonesMenu" routerLink="/Cita-pacientes">Citas</a>
+                 <ul>
+                     <li><a routerLink="/Cita-pacientes">Lista</a></li>
+                     <li><a routerLink="/Agregar-cita">Agregar</a></li>
+                 </ul>
+             </li>
+             <li>
+                <a type="button" style="background-color: #0B5ED7;font-weight: bold;" class="botonesMenu" (click)="logout()">Logout</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="info">
+        <div class="account">{{dataNombre}}</div>
+         <div>
+             <a class="logo" routerLink="/Perfil">
+                 <img style="height: 2rem; margin-right: 1rem;" src="../../../assets/user.svg" alt="logo">
+             </a>
+         </div>
+        </div>
+     </div>
+
+     <div *ngIf="data == 1">
+        <nav>
+          <a class="logo" routerLink="">
+             <img style="height: 1.8rem;"src="../../../assets/logo.svg" alt="logo">
+          </a>
+          <ul class="menu-doctor">
+             <li><a class="botonesMenu" routerLink="">Home</a></li>
+             <li>
+                 <a class="botonesMenu" routerLink="/Pacientes">Pacientes</a>
+                 <ul>
+                     <li><a routerLink="/Pacientes">Lista</a></li>
+                     <li><a routerLink="/Agregar-paciente">Agregar</a></li>
+                 </ul>
+             </li>
+             <li>
+                 <a class="botonesMenu" routerLink="/Citas">Citas</a>
+                 <ul>
+                     <li><a routerLink="/Citas">Lista</a></li>
+                     <li><a routerLink="/Agregar-cita">Agregar</a></li>
+                 </ul>
+             </li>
+             <li >
+                <a type="button" style="background-color: #0B5ED7; font-weight: bold;" class="botonesMenu" (click)="logout()">Logout</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="info">
+        <div class="account">{{dataNombre}}</div>
+         <div>
+            <a class="logo" routerLink="/Perfil">
+                <img style="height: 2rem; margin-right: 1rem;" src="../../../assets/user.svg" alt="logo">
+            </a>
+         </div>
+        </div>
+     </div>
+</div>

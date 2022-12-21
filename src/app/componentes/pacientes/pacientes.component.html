@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row text-center mt-4">
+      <div class="col">
+      </div>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="col">
+        <h2>{{titulo}}</h2>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Pacientes'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-success botones" type="button" (click)="vistaAgregar()">Agregar</button>
+        <button *ngIf="data==3" class="btn btn-primary botones" type="button" (click)="onDataTableEliminados()">Ver desactivados</button>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Pacientes desactivados'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-primary" type="button" (click)="onDataTable()">Volver</button>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <table id="dtDocot" class="table" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Date of Birth</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Direccion</th>
+              <th style="width: 0px;"></th>
+              <th style="width: 0px;"></th>
+            </tr>
+          </thead>
+          <tbody *ngIf="data==3">
+            <tr *ngFor="let patient of datatable" [ngSwitch]="patient.pacEstatus">
+              <td [ngStyle]="{color: patient.pacEstatus=='D' ? 'red':'black'}">{{patient.pacCodigo}}</td>
+              <td>{{patient.pacNombre}}</td>
+              <td>{{patient.pacApellido}}</td>
+              <td>{{patient.pacFechaNacimiento | date: "MMM d, y"}}</td>
+              <td>{{patient.pacTelefono}}</td>
+              <td>{{patient.pacEmail}}</td>
+              <td>{{patient.pacDireccion}}</td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-warning" type="button" (click)="onSetData(patient)">Detalles</button></td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-danger" type="button"  (click)="onDelete(patient)">Desactivar</button></td>
+              <td *ngSwitchCase="'D'"><button class="btn btn-success" type="button"  (click)="onRestaurar(patient)">Activar</button></td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="data==1">
+            <tr *ngFor="let patient of datatable" [ngSwitch]="patient.pacEstatus">
+              <td [ngStyle]="{color: patient.pacEstatus=='D' ? 'red':'black'}">{{patient.pacCodigo}}</td>
+              <td>{{patient.pacNombre}}</td>
+              <td>{{patient.pacApellido}}</td>
+              <td>{{patient.pacFechaNacimiento | date: "MMM d, y"}}</td>
+              <td>{{patient.pacTelefono}}</td>
+              <td>{{patient.pacEmail}}</td>
+              <td>{{patient.pacDireccion}}</td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-warning" type="button" (click)="onSetData(patient)">Detalles</button></td>            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

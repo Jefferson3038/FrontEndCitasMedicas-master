@@ -1,0 +1,25 @@
+.perfil{
+    height: 20rem; 
+    display: block;
+    position: relative;
+    left: 20rem;
+    bottom: 2rem;
+    
+}
+
+h1{
+    top: 5rem;
+    position: relative;
+    text-align: center;
+    align-items: center;
+}
+
+h3{
+    top: 10rem;
+    left: 1rem;
+    font-weight: bold;
+    display: block;
+    position: relative;
+    text-align: center;
+    align-items: center;
+}

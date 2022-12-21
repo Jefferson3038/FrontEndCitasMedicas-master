@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row text-center mt-4">
+      <div class="col">
+      </div>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="col">
+        <h2>{{titulo}}</h2>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Citas'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-success" type="button" (click)="vistaAgregar()">Agregar</button>
+        <button class="btn btn-primary" type="button" (click)="onDataTableEliminados()">Ver canceladas</button>
+      </div>
+    </div>
+    <div *ngIf="titulo=='Citas canceladas'" class="row mt-5">
+      <div class="col">
+        <button class="btn btn-primary" type="button" (click)="onDataTable()">Volver</button>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <table id="dtDocot" class="table" style="width: 100%;">
+          <thead *ngIf="data==3">
+            <tr>
+              <th>Id</th>
+              <th>Paciente</th>
+              <th>Doctor</th>
+              <th style="width: 20rem;">Horario</th>
+              <th>Descripcion</th>
+              <th style="width: 0px;"></th>
+              <th style="width: 0px;"></th>
+            </tr>
+          </thead>
+          <thead *ngIf="data==1">
+            <tr>
+              <th>Paciente</th>
+              <th style="width: 20rem;">Horario</th>
+              <th>Descripcion</th>
+              <th style="width: 0px;"></th>
+              <th style="width: 0px;"></th>
+            </tr>
+          </thead>
+          <tbody *ngIf="data==3">
+            <tr *ngFor="let date of datatable" [ngSwitch]="date.ctEstatus">
+              <td [ngStyle]="{color: date.ctEstatus=='D' ? 'red': 'black'}">{{date.ctCodigo}}</td>
+              <td>{{date.pacientes.pacNombre}} {{date.pacientes.pacApellido}}</td>
+              <td>{{date.doctores.docNombre}} {{date.doctores.docApellido}}</td>
+              <td>{{date.ctHorarioInicial | date:'MMM d, h:mm a'}} - {{date.ctHorarioFinal | date:'MMM d, h:mm a'}}</td>  
+              <td>{{date.ctDescripcion}}</td> 
+              <td *ngSwitchCase="'A'"><button class="btn btn-warning" type="button" (click)="onSetData(date)">Detalles</button></td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-danger" type="button"  (click)="onDeleteCita(date)">Cancelar</button></td>
+              <td *ngSwitchCase="'D'"><button class="btn btn-success" type="button"  (click)="onRestaurar(date)">Activar</button></td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="data==1" >
+            <tr *ngFor="let date of datatable" [ngSwitch]="date.ctEstatus">
+              <td>{{date.pacientes.pacNombre}} {{date.pacientes.pacApellido}}</td>
+              <td>{{date.ctHorarioInicial | date:'MMM d, h:mm a'}} - {{date.ctHorarioFinal | date:'MMM d, h:mm a'}}</td>  
+              <td>{{date.ctDescripcion}}</td> 
+              <td *ngSwitchCase="'A'"><button class="btn btn-warning" type="button" (click)="onSetData(date)">Detalles</button></td>
+              <td *ngSwitchCase="'A'"><button class="btn btn-danger" type="button"  (click)="onDeleteCita(date)">Cancelar</button></td>
+              <td *ngSwitchCase="'D'"><button class="btn btn-success" type="button"  (click)="onRestaurar(date)">Activar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
